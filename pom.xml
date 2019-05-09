@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.duangframework.dingtalk</groupId>
+  <artifactId>duang-dingtalk</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>duang-dingtalk</name>
+  <url>http://www.duangfromework.com</url>
+
+  <distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <name>Releases</name>
+      <url>http://dev.signetz.com:7071/repository/maven-releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus</id>
+      <name>Snapshot</name>
+      <url>http://dev.signetz.com:7071/repository/maven-snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <duang.version>1.0-SNAPSHOT</duang.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.duangframework</groupId>
+      <artifactId>duang</artifactId>
+      <version>${duang.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.dingtalk.api</groupId>
+      <artifactId>client-sdk</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/taobao-sdk-java-auto_1479188381469-20190509.jar</systemPath>
+    </dependency>
+  </dependencies>
+
+</project>
