@@ -1,5 +1,6 @@
 package com.duangframework.dingtalk.utils;
 
+import com.duangframework.kit.Prop;
 import com.duangframework.kit.PropKit;
 
 public class DingTalkConfig {
@@ -8,17 +9,26 @@ public class DingTalkConfig {
 
     private String appKey;
     private String appSecret;
-    // 企业ID
+    /**  企业ID*/
     private String corpId;
-    // 应用agentId
+    /** 应用agentId*/
     private String agentId;
-    // 回调地址
+    /** 回调地址*/
     private String callbackUrl;
-    // 加解密需要用到的token字符串，企业可以随机填写
+    /** 加解密需要用到的token字符串，企业可以随机填写*/
     private String token;
 
     public DingTalkConfig() {
         loadProp();
+    }
+
+    public DingTalkConfig(Builder builder) {
+        this.appKey = builder.appKey;
+        this.appSecret = builder.appSecret;
+        this.corpId = builder.corpId;
+        this.agentId = builder.agentId;
+        this.callbackUrl = builder.callbackUrl;
+        this.token = builder.token;
     }
 
     public DingTalkConfig(String appKey, String appSecret, String corpId, String agentId, String callbackUrl, String token) {
@@ -31,12 +41,13 @@ public class DingTalkConfig {
     }
 
     private void loadProp() {
-        appKey = PropKit.get("dingtalk.appKey");
-        appSecret = PropKit.get("dingtalk.appSecret");
-        corpId = PropKit.get("dingtalk.corpId");
-        agentId = PropKit.get("dingtalk.agentId");
-        callbackUrl = PropKit.get("dingtalk.callbackUrl");
-        token = PropKit.get("dingtalk.token");
+        Prop prop = PropKit.use("dingtalk.properties");
+        appKey = prop.get("dingtalk.appKey");
+        appSecret = prop.get("dingtalk.appSecret");
+        corpId = prop.get("dingtalk.corpId");
+        agentId = prop.get("dingtalk.agentId");
+        callbackUrl = prop.get("dingtalk.callbackUrl");
+        token = prop.get("dingtalk.token");
     }
 
     public String getAppKey() {
@@ -86,4 +97,46 @@ public class DingTalkConfig {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public static class Builder {
+        private String appKey;
+        private String appSecret;
+        /**  企业ID*/
+        private String corpId;
+        /** 应用agentId*/
+        private String agentId;
+        /** 回调地址*/
+        private String callbackUrl;
+        /** 加解密需要用到的token字符串，企业可以随机填写*/
+        private String token;
+
+        public Builder appKey(String appKey) {
+            this.appKey = appKey;
+            return this;
+        }
+        public Builder appSecret(String appSecret) {
+            this.appSecret = appSecret;
+            return this;
+        }
+        public Builder corpId(String corpId) {
+            this.corpId = corpId;
+            return this;
+        }
+        public Builder agentId(String agentId) {
+            this.agentId = agentId;
+            return this;
+        }
+        public Builder callbackUrl(String callbackUrl) {
+            this.callbackUrl = callbackUrl;
+            return this;
+        }
+        public Builder token(String token) {
+            this.token = token;
+            return this;
+        }
+        public DingTalkConfig build(){
+            return new DingTalkConfig(this);
+        }
+    }
+
 }

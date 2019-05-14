@@ -9,6 +9,7 @@ import java.util.Random;
  */
 public class DangtalkUtils {
 
+    private static DingTalkConfig DINGTALK_CONFIG;
     private static final String BASE_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     /**
@@ -70,5 +71,28 @@ public class DangtalkUtils {
             str.deleteCharAt(str.length() - 1);
         }
         return str.toString();
+    }
+
+    /**
+     *  设置配置文件类
+     * @param dingTalkConfig
+     * @return
+     */
+    public static void setDingTalkConfig(DingTalkConfig dingTalkConfig) {
+        if (null == dingTalkConfig) {
+            throw new NullPointerException("DingTalkConfig is null");
+        }
+        DINGTALK_CONFIG = dingTalkConfig;
+    }
+
+    /**
+     * 获取配置文件类
+     * @return
+     */
+    public static DingTalkConfig getDingtalkConfig() {
+        if(null == DINGTALK_CONFIG) {
+            DINGTALK_CONFIG = new DingTalkConfig();
+        }
+        return DINGTALK_CONFIG;
     }
 }

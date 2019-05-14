@@ -20,7 +20,6 @@ public class AuthUtils {
 
     private final static Logger logger = LoggerFactory.getLogger(AuthUtils.class);
 
-    private static final DingTalkConfig dingTalkConfig = new DingTalkConfig();
     private static final Map<String, DingtalkResponse> TOKEN_RESPONSE_MAP = new HashMap<>();
 
     private static final String GET_TOKEN_API = "https://oapi.dingtalk.com/gettoken";
@@ -35,6 +34,7 @@ public class AuthUtils {
             isExpires = (curTime - response.getBeginTime()) >= (ogr.getExpiresIn()-600) * 1000;
         }
         if (null == response || isExpires) {
+            DingTalkConfig dingTalkConfig = DangtalkUtils.getDingtalkConfig();
             try {
                 DefaultDingTalkClient client = new DefaultDingTalkClient(GET_TOKEN_API);
                 OapiGettokenRequest request = new OapiGettokenRequest();
