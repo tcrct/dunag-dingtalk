@@ -1,4 +1,4 @@
-package com.duangframework.dingtalk.service.department;
+package com.duangframework.dingtalk.service;
 
 /**
  * 部门管理

@@ -39,6 +39,12 @@ public class DingtalkHolder {
     }
 
     /**
+     *  日志类
+     */
+    public static class LOG extends LogUtils {
+    }
+
+    /**
      *  审批类
      */
     public static class PROCESS extends ProcessUtils {
