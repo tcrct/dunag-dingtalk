@@ -1,9 +1,8 @@
-package com.duangframework.dingtalk.kit;
+package com.duangframework.dingtalk.core;
 
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.OapiProcessinstanceCreateRequest;
-import com.dingtalk.api.response.OapiDepartmentListIdsResponse;
 import com.dingtalk.api.response.OapiProcessinstanceCreateResponse;
 import com.duangframework.dingtalk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.dto.ProcessDto;

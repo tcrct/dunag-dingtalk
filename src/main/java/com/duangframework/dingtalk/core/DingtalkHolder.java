@@ -1,4 +1,4 @@
-package com.duangframework.dingtalk.kit;
+package com.duangframework.dingtalk.core;
 
 /**
  * 钉钉SDK主入口
@@ -24,6 +24,18 @@ public class DingtalkHolder {
      *  角色类
      */
     public static class ROLE extends RoleUtils {
+    }
+
+    /**
+     *  消息通知类
+     */
+    public static class MESSAGE extends MessageUtils {
+    }
+
+    /**
+     *  公告类
+     */
+    public static class NOTICE extends NoticeUtils {
     }
 
     /**

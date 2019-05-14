@@ -1,4 +1,4 @@
-package com.duangframework.dingtalk.kit;
+package com.duangframework.dingtalk.core;
 
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;

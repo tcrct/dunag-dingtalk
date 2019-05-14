@@ -1,4 +1,4 @@
-package com.duangframework.dingtalk.kit;
+package com.duangframework.dingtalk.core;
 
 import com.alibaba.fastjson.JSON;
 import com.dingtalk.api.DefaultDingTalkClient;
@@ -14,9 +14,6 @@ import com.duangframework.kit.ToolsKit;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 用户管理
