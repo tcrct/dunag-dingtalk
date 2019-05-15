@@ -6,6 +6,7 @@ import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.duangframework.dingtalk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DangtalkUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -124,7 +125,7 @@ public class RoleUtils {
      * @param roleName 角色名称
      * @param groupId 角色组id
      */
-    public static DingtalkResponse<OapiRoleAddroleResponse> getAddRole(long groupId, String roleName) {
+    public static DingtalkResponse<OapiRoleAddroleResponse> createRole(long groupId, String roleName) {
         try {
             DingTalkClient client = new DefaultDingTalkClient(GET_ADD_ROLE_API);
             OapiRoleAddroleRequest req = new OapiRoleAddroleRequest();
@@ -148,7 +149,7 @@ public class RoleUtils {
      * @param roleName 角色名称
      * @param roleId 角色id
      */
-    public static DingtalkResponse<OapiRoleUpdateroleResponse> getUpdateRole(long roleId, String roleName) {
+    public static DingtalkResponse<OapiRoleUpdateroleResponse> updateRole(long roleId, String roleName) {
         try {
             DingTalkClient client = new DefaultDingTalkClient(GET_UPDATE_ROLE_API);
             OapiRoleUpdateroleRequest req = new OapiRoleUpdateroleRequest();
@@ -171,7 +172,7 @@ public class RoleUtils {
      *
      * @param roleId 角色id
      */
-    public static DingtalkResponse<OapiRoleDeleteroleResponse> getDeleteRole(long roleId) {
+    public static DingtalkResponse<OapiRoleDeleteroleResponse> deleteRole(long roleId) {
         try {
             DingTalkClient client = new DefaultDingTalkClient(GET_DELETE_ROLE_API);
             OapiRoleDeleteroleRequest request = new OapiRoleDeleteroleRequest();
@@ -193,7 +194,7 @@ public class RoleUtils {
      *
      * @param name 角色组名称
      */
-    public static DingtalkResponse<OapiRoleAddrolegroupResponse> getAddRoleGroup(String name) {
+    public static DingtalkResponse<OapiRoleAddrolegroupResponse> createRoleGroup(String name) {
         try {
             DingTalkClient client = new DefaultDingTalkClient(GET_ADD_ROLE_GROUP_API);
             OapiRoleAddrolegroupRequest req = new OapiRoleAddrolegroupRequest();
@@ -216,13 +217,13 @@ public class RoleUtils {
      * @param roleIds 角色id list，最大列表长度：20
      * @param userIds 员工id list，最大列表长度：100
      */
-    public static DingtalkResponse<OapiRoleAddrolesforempsResponse> batchAddRoles(List<String> roleIds, List<String> userIds) {
+    public static DingtalkResponse<OapiRoleAddrolesforempsResponse> batchCreateRoles(List<String> roleIds, List<String> userIds) {
         try {
             DingTalkClient client = new DefaultDingTalkClient(GET_ADD_ROLES_API);
             OapiRoleAddrolesforempsRequest request = new OapiRoleAddrolesforempsRequest();
 
-            request.setRoleIds(DangtalkUtils1.collections2String(roleIds, ","));
-            request.setUserIds(DangtalkUtils1.collections2String(userIds, ","));
+            request.setRoleIds(DangtalkUtils.collections2String(roleIds, ","));
+            request.setUserIds(DangtalkUtils.collections2String(userIds, ","));
             request.setHttpMethod(HttpMethod.POST.name());
             OapiRoleAddrolesforempsResponse response = client.execute(request, AuthUtils.getAccessToken());
             return new DingtalkResponse<>(response);
@@ -241,12 +242,12 @@ public class RoleUtils {
      *  @param roleIds 角色id list，最大列表长度：20
      * @param userIds 员工id list，最大列表长度：100
      */
-    public static DingtalkResponse<OapiRoleRemoverolesforempsResponse> batchRemoveRoles(String roleIds, String userIds) {
+    public static DingtalkResponse<OapiRoleRemoverolesforempsResponse> batchRemoveRoles(List<String> roleIds, List<String> userIds) {
         try {
             DingTalkClient client = new DefaultDingTalkClient(GET_REMOVE_ROLES_API);
             OapiRoleRemoverolesforempsRequest request = new OapiRoleRemoverolesforempsRequest();
-            request.setRoleIds(roleIds);
-            request.setUserIds(userIds);
+            request.setRoleIds(DangtalkUtils.collections2String(roleIds,","));
+            request.setUserIds(DangtalkUtils.collections2String(userIds,","));
             request.setHttpMethod(HttpMethod.POST.name());
             OapiRoleRemoverolesforempsResponse response = client.execute(request, AuthUtils.getAccessToken());
             return new DingtalkResponse<>(response);
