@@ -66,17 +66,17 @@ public class LogUtils {
      *
      *  https://oapi.dingtalk.com/topapi/report/template/listbyuserid?access_token=ACCESS_TOKEN
      *
-     * @param userid  用户id
+     * @param userId  用户id
      * @param offset  分页游标，从0开始。根据返回结果里的next_cursor是否为空来判断是否还有下一页，且再次调用时offset设置成next_cursor的值
      * @param size 分页大小，最大可设置成100
      *
      *
      */
-    public static DingtalkResponse<OapiReportTemplateListbyuseridResponse> getLogTemplate(String userid, long offset, long size) {
+    public static DingtalkResponse<OapiReportTemplateListbyuseridResponse> getLogTemplate(String userId, long offset, long size) {
         try {
             DingTalkClient client = new DefaultDingTalkClient(GET_SEE_USER_LOG_TEMPLATE_API);
             OapiReportTemplateListbyuseridRequest req = new OapiReportTemplateListbyuseridRequest();
-            req.setUserid(userid);
+            req.setUserid(userId);
             req.setOffset(offset);
             req.setSize(size);
             req.setHttpMethod(HttpMethod.POST.name());
@@ -94,15 +94,15 @@ public class LogUtils {
      *
      *  https://oapi.dingtalk.com/topapi/report/getunreadcount?access_token=ACCESS_TOKEN
      *
-     * @param userid  用户id
+     * @param userId  用户id
      *
      * @return
      */
-    public static DingtalkResponse<OapiReportGetunreadcountResponse> getNotReadLog(String userid) {
+    public static DingtalkResponse<OapiReportGetunreadcountResponse> getNotReadLog(String userId) {
         try {
             DingTalkClient client = new DefaultDingTalkClient(GET_USER_LOG_NOT_READ_API);
             OapiReportGetunreadcountRequest request = new OapiReportGetunreadcountRequest();
-            request.setUserid(userid);
+            request.setUserid(userId);
             request.setHttpMethod(HttpMethod.POST.name());
             OapiReportGetunreadcountResponse response = client.execute(request,AuthUtils.getAccessToken());
             return new DingtalkResponse<>(response);

@@ -1,5 +1,6 @@
 package com.duangframework.dingtalk.utils;
 
+import com.duangframework.dingtalk.utils.aes.DingTalkEncryptor;
 import com.duangframework.kit.ToolsKit;
 
 import java.util.Random;
@@ -7,7 +8,7 @@ import java.util.Random;
 /**
  * 加解密工具类
  */
-public class DangtalkUtils {
+public class DingTalkUtils {
 
     private static DingTalkConfig DINGTALK_CONFIG;
     private static final String BASE_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -95,4 +96,26 @@ public class DangtalkUtils {
         }
         return DINGTALK_CONFIG;
     }
+
+    /**
+     * 对回调的参数进行解密，确保请求合法
+     * @param signature        签名值
+     * @param timeStamp     时间戳
+     * @param nonce             随机字符串
+     * @param encrypt           加密的字符串
+     * @return 解密后的字符串
+     */
+    public static String getDecryptMsg(String signature, String timeStamp, String nonce, String encrypt) {
+        String plainText = "";
+        try {
+            // 根据用户注册的token和AES_KEY对encrypt进行解密
+            DingTalkEncryptor dingTalkEncryptor = new DingTalkEncryptor(getDingtalkConfig().getToken(), getDingtalkConfig().getEncodingAesKey(), getDingtalkConfig().getCorpId());
+            plainText = dingTalkEncryptor.getDecryptMsg(signature, timeStamp, nonce, encrypt);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return plainText;
+    }
+
 }

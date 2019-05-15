@@ -50,4 +50,10 @@ public class DingtalkHolder {
     public static class PROCESS extends ProcessUtils {
     }
 
+    /**
+     *  回调类
+     */
+    public static class CALLBACK extends CallbackUtils {
+    }
+
 }

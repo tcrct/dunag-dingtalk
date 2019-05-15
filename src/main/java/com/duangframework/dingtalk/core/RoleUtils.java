@@ -6,7 +6,7 @@ import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.duangframework.dingtalk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.utils.AuthUtils;
-import com.duangframework.dingtalk.utils.DangtalkUtils;
+import com.duangframework.dingtalk.utils.DingTalkUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -222,8 +222,8 @@ public class RoleUtils {
             DingTalkClient client = new DefaultDingTalkClient(GET_ADD_ROLES_API);
             OapiRoleAddrolesforempsRequest request = new OapiRoleAddrolesforempsRequest();
 
-            request.setRoleIds(DangtalkUtils.collections2String(roleIds, ","));
-            request.setUserIds(DangtalkUtils.collections2String(userIds, ","));
+            request.setRoleIds(DingTalkUtils.collections2String(roleIds, ","));
+            request.setUserIds(DingTalkUtils.collections2String(userIds, ","));
             request.setHttpMethod(HttpMethod.POST.name());
             OapiRoleAddrolesforempsResponse response = client.execute(request, AuthUtils.getAccessToken());
             return new DingtalkResponse<>(response);
@@ -246,8 +246,8 @@ public class RoleUtils {
         try {
             DingTalkClient client = new DefaultDingTalkClient(GET_REMOVE_ROLES_API);
             OapiRoleRemoverolesforempsRequest request = new OapiRoleRemoverolesforempsRequest();
-            request.setRoleIds(DangtalkUtils.collections2String(roleIds,","));
-            request.setUserIds(DangtalkUtils.collections2String(userIds,","));
+            request.setRoleIds(DingTalkUtils.collections2String(roleIds,","));
+            request.setUserIds(DingTalkUtils.collections2String(userIds,","));
             request.setHttpMethod(HttpMethod.POST.name());
             OapiRoleRemoverolesforempsResponse response = client.execute(request, AuthUtils.getAccessToken());
             return new DingtalkResponse<>(response);

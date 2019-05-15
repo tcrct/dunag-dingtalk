@@ -17,6 +17,8 @@ public class DingTalkConfig {
     private String callbackUrl;
     /** 加解密需要用到的token字符串，企业可以随机填写*/
     private String token;
+    /** 加密关键字*/
+    private String encodingAesKey;
 
     public DingTalkConfig() {
         loadProp();
@@ -31,13 +33,14 @@ public class DingTalkConfig {
         this.token = builder.token;
     }
 
-    public DingTalkConfig(String appKey, String appSecret, String corpId, String agentId, String callbackUrl, String token) {
+    public DingTalkConfig(String appKey, String appSecret, String corpId, String agentId, String callbackUrl, String token,String encodingAesKey) {
         this.appKey = appKey;
         this.appSecret = appSecret;
         this.corpId = corpId;
         this.agentId = agentId;
         this.callbackUrl = callbackUrl;
         this.token = token;
+        this.encodingAesKey = encodingAesKey;
     }
 
     private void loadProp() {
@@ -48,6 +51,7 @@ public class DingTalkConfig {
         agentId = prop.get("dingtalk.agentId");
         callbackUrl = prop.get("dingtalk.callbackUrl");
         token = prop.get("dingtalk.token");
+        encodingAesKey = prop.get("dingtalk.encodingAesKey");
     }
 
     public String getAppKey() {
@@ -98,6 +102,14 @@ public class DingTalkConfig {
         this.token = token;
     }
 
+    public String getEncodingAesKey() {
+        return encodingAesKey;
+    }
+
+    public void setEncodingAesKey(String encodingAesKey) {
+        this.encodingAesKey = encodingAesKey;
+    }
+
     public static class Builder {
         private String appKey;
         private String appSecret;
@@ -109,6 +121,7 @@ public class DingTalkConfig {
         private String callbackUrl;
         /** 加解密需要用到的token字符串，企业可以随机填写*/
         private String token;
+        private String encodingAesKey;
 
         public Builder appKey(String appKey) {
             this.appKey = appKey;
@@ -132,6 +145,10 @@ public class DingTalkConfig {
         }
         public Builder token(String token) {
             this.token = token;
+            return this;
+        }
+        public Builder encodingAesKey(String encodingAesKey) {
+            this.encodingAesKey = encodingAesKey;
             return this;
         }
         public DingTalkConfig build(){

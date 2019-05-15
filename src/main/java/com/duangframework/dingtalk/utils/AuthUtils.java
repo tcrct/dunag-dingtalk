@@ -34,7 +34,7 @@ public class AuthUtils {
             isExpires = (curTime - response.getBeginTime()) >= (ogr.getExpiresIn()-600) * 1000;
         }
         if (null == response || isExpires) {
-            DingTalkConfig dingTalkConfig = DangtalkUtils.getDingtalkConfig();
+            DingTalkConfig dingTalkConfig = DingTalkUtils.getDingtalkConfig();
             try {
                 DefaultDingTalkClient client = new DefaultDingTalkClient(GET_TOKEN_API);
                 OapiGettokenRequest request = new OapiGettokenRequest();

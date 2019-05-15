@@ -9,7 +9,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.duangframework.dingtalk.utils.DangtalkUtils;
+import com.duangframework.dingtalk.utils.DingTalkUtils;
 import org.apache.commons.codec.binary.Base64;
 
 
@@ -69,7 +69,7 @@ public class DingTalkEncryptor {
             throw new DingTalkEncryptException(DingTalkEncryptException.ENCRYPTION_NONCE_ILLEGAL);
         }
         // 加密
-        String encrypt = encrypt(DangtalkUtils.getRandomStr(RANDOM_LENGTH), plaintext);
+        String encrypt = encrypt(DingTalkUtils.getRandomStr(RANDOM_LENGTH), plaintext);
         String signature = getSignature(token, String.valueOf(timeStamp), nonce, encrypt);
         Map<String,String> resultMap = new HashMap<String, String>();
         resultMap.put("msg_signature", signature);
@@ -109,7 +109,7 @@ public class DingTalkEncryptor {
         try {
             byte[] randomBytes = random.getBytes(CHARSET);
             byte[] plainTextBytes = plaintext.getBytes(CHARSET);
-            byte[] lengthByte = DangtalkUtils.int2Bytes(plainTextBytes.length);
+            byte[] lengthByte = DingTalkUtils.int2Bytes(plainTextBytes.length);
             byte[] corpidBytes = corpId.getBytes(CHARSET);
             ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
             byteStream.write(randomBytes);
@@ -160,7 +160,7 @@ public class DingTalkEncryptor {
             byte[] bytes = PKCS7Padding.removePaddingBytes(originalArr);
             // 分离16位随机字符串,网络字节序和corpId
             byte[] networkOrder = Arrays.copyOfRange(bytes, 16, 20);
-            int plainTextLegth = DangtalkUtils.bytes2int(networkOrder);
+            int plainTextLegth = DingTalkUtils.bytes2int(networkOrder);
             plainText = new String(Arrays.copyOfRange(bytes, 20, 20 + plainTextLegth), CHARSET);
             fromCorpid = new String(Arrays.copyOfRange(bytes, 20 + plainTextLegth, bytes.length), CHARSET);
         } catch (Exception e) {

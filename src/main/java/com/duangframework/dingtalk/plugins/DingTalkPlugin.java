@@ -1,6 +1,6 @@
 package com.duangframework.dingtalk.plugins;
 
-import com.duangframework.dingtalk.utils.DangtalkUtils;
+import com.duangframework.dingtalk.utils.DingTalkUtils;
 import com.duangframework.dingtalk.utils.DingTalkConfig;
 import com.duangframework.mvc.plugin.IPlugin;
 
@@ -13,15 +13,15 @@ public class DingTalkPlugin implements IPlugin {
 
 
     public DingTalkPlugin() {
-        DangtalkUtils.setDingTalkConfig(new DingTalkConfig());
+        DingTalkUtils.setDingTalkConfig(new DingTalkConfig());
     }
     public DingTalkPlugin(DingTalkConfig config) {
-        DangtalkUtils.setDingTalkConfig(config);
+        DingTalkUtils.setDingTalkConfig(config);
     }
 
     @Override
     public void start() throws Exception {
-        DingTalkConfig config = DangtalkUtils.getDingtalkConfig();
+        DingTalkConfig config = DingTalkUtils.getDingtalkConfig();
         if(null == config) {
             throw new NullPointerException("config is null");
         }
@@ -29,6 +29,6 @@ public class DingTalkPlugin implements IPlugin {
 
     @Override
     public void stop() throws Exception {
-        DangtalkUtils.setDingTalkConfig(null);
+        DingTalkUtils.setDingTalkConfig(null);
     }
 }
