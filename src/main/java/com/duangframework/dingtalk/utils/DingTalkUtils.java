@@ -1,6 +1,8 @@
 package com.duangframework.dingtalk.utils;
 
 import com.dingtalk.oapi.lib.aes.DingTalkEncryptor;
+import com.duangframework.dingtalk.service.strategy.EventTypeEnum;
+import com.duangframework.dingtalk.service.strategy.IStrategy;
 import com.duangframework.kit.ToolsKit;
 import java.util.Map;
 import java.util.Random;
@@ -131,6 +133,16 @@ public class DingTalkUtils {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * 取策略实现类
+     * @param type
+     * @return
+     */
+    public static IStrategy getStrategy(String type) {
+        EventTypeEnum typeEnum = EventTypeEnum.valueOf(type);
+        return ToolsKit.isNotEmpty(typeEnum) ? typeEnum.getStrategy() : null;
     }
 
 }

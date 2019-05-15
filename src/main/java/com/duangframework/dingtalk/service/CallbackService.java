@@ -1,5 +1,6 @@
 package com.duangframework.dingtalk.service;
 
+import com.duangframework.dingtalk.service.strategy.IStrategy;
 import com.duangframework.dingtalk.utils.DingTalkUtils;
 import com.duangframework.exception.ServiceException;
 import com.duangframework.kit.ToolsKit;
@@ -31,22 +32,29 @@ public class CallbackService {
             throw new ServiceException("根据解密的字符串转换成Map时出错: Map为空");
         }
         String eventType = callbackMap.get("EventType") + "";
-        switch (eventType) {
-            case "user_modify_org" :
-                logger.warn("通讯录用户更改");
-                break;
-            case "bpms_task_change" :
-                logger.warn("审批任务开始/结束");
-                break;
-            case "bpms_instance_change" :
-                logger.warn("审批实例开始/结束");
-                break;
-             default:
-                 logger.warn("############");
-        }
 
-        // 返回success的加密信息表示回调处理成功
+//        switch (eventType) {
+//            case "user_modify_org" :
+//                logger.warn("通讯录用户更改");
+//                break;
+//            case "bpms_task_change" :
+//                logger.warn("审批任务开始/结束");
+//                break;
+//            case "bpms_instance_change" :
+//                logger.warn("审批实例开始/结束");
+//                break;
+//             default:
+//                 logger.warn("############");
+//        }
+
+
         try {
+            IStrategy strategy = DingTalkUtils.getStrategy(eventType);
+            if(ToolsKit.isEmpty(strategy)) {
+                throw new ServiceException("没有找到对应的策略类进行实施操作");
+            }
+            strategy.handle(plainText);
+            // 返回success的加密信息表示回调处理成功
             return DingTalkUtils.getEncryptedMap("success", System.currentTimeMillis(), DingTalkUtils.getRandomStr(8));
         } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e);

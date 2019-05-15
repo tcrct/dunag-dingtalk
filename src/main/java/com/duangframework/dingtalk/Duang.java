@@ -1,9 +1,9 @@
 package com.duangframework.dingtalk;
 
-import com.duangframework.dingtalk.core.SystemRun;
+//import com.duangframework.dingtalk.core.SystemRun;
 import com.duangframework.dingtalk.plugins.DingTalkPlugin;
 import com.duangframework.dingtalk.utils.DingTalkConfig;
-import com.duangframework.mvc.http.enums.EnvEnum;
+//import com.duangframework.mvc.http.enums.EnvEnum;
 import com.duangframework.mvc.plugin.IPlugin;
 import com.duangframework.mvc.plugin.PluginChain;
 import com.duangframework.server.Application;
@@ -27,7 +27,7 @@ public class Duang {
                                 .build()));
                         }
                 })
-                .env(EnvEnum.DEV)
+//                .env(EnvEnum.DEV)
 //                .init(new SystemRun())
                 .run();
     }
