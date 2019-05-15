@@ -56,7 +56,8 @@ public class MongodbDataHandle implements IDateHandle {
 
             // 存新表
             document = new Document(response.toMap());
-            getCollection(tableName).insertOne(document);
+            logger.warn("######: " + document.toString());
+//            getCollection(tableName).insertOne(document);
         }
 
     }

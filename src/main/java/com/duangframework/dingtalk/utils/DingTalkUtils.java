@@ -1,8 +1,8 @@
 package com.duangframework.dingtalk.utils;
 
-import com.duangframework.dingtalk.utils.aes.DingTalkEncryptor;
+import com.dingtalk.oapi.lib.aes.DingTalkEncryptor;
 import com.duangframework.kit.ToolsKit;
-
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -112,10 +112,25 @@ public class DingTalkUtils {
             DingTalkEncryptor dingTalkEncryptor = new DingTalkEncryptor(getDingtalkConfig().getToken(), getDingtalkConfig().getEncodingAesKey(), getDingtalkConfig().getCorpId());
             plainText = dingTalkEncryptor.getDecryptMsg(signature, timeStamp, nonce, encrypt);
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
         return plainText;
+    }
+
+    /**
+     *
+     * @param plaintext
+     * @param timeStamp
+     * @param nonce
+     * @return
+     */
+    public static Map<String, String> getEncryptedMap(String plaintext, Long timeStamp, String nonce)  {
+        try {
+            DingTalkEncryptor dingTalkEncryptor = new DingTalkEncryptor(getDingtalkConfig().getToken(), getDingtalkConfig().getEncodingAesKey(), getDingtalkConfig().getCorpId());
+            return dingTalkEncryptor.getEncryptedMap(plaintext, timeStamp, nonce);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

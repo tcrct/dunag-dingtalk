@@ -44,6 +44,13 @@
       <scope>system</scope>
       <systemPath>${project.basedir}/lib/taobao-sdk-java-auto_1479188381469-20190510.jar</systemPath>
     </dependency>
+    <dependency>
+      <groupId>om.laiwang.lippi</groupId>
+      <artifactId>lippi.oapi.encryt</artifactId>
+      <version>1.0.4-SNAPSHOT</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/lib/lippi-oapi-encrpt.jar</systemPath>
+    </dependency>
   </dependencies>
 
 </project>

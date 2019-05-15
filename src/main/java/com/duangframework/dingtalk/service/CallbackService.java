@@ -19,8 +19,8 @@ public class CallbackService {
 
     private final static Logger logger = LoggerFactory.getLogger(CallbackService.class);
 
-    public String callback(String signature, String timeStamp, String nonce, String encrypt) {
-        if(ToolsKit.isEmpty(signature) || ToolsKit.isEmpty(timeStamp) || ToolsKit.isEmpty(nonce) || ToolsKit.isEmpty(encrypt)) {
+    public Map<String, String> callback(String signature, String timeStamp, String nonce, String encrypt) {
+        if(ToolsKit.isEmpty(signature) || ToolsKit.isEmpty(timeStamp) || ToolsKit.isEmpty(nonce)) {
             throw new ServiceException("回调时，所有参数不能为空");
         }
 
@@ -32,17 +32,24 @@ public class CallbackService {
         }
         String eventType = callbackMap.get("EventType") + "";
         switch (eventType) {
-            case "user_modify_org " :
-                logger.debug("通讯录用户更改");
+            case "user_modify_org" :
+                logger.warn("通讯录用户更改");
                 break;
             case "bpms_task_change" :
-                logger.debug("审批任务开始/结束");
+                logger.warn("审批任务开始/结束");
                 break;
             case "bpms_instance_change" :
-                logger.debug("审批实例开始/结束");
+                logger.warn("审批实例开始/结束");
                 break;
+             default:
+                 logger.warn("############");
         }
 
-        return "success";
+        // 返回success的加密信息表示回调处理成功
+        try {
+            return DingTalkUtils.getEncryptedMap("success", System.currentTimeMillis(), DingTalkUtils.getRandomStr(8));
+        } catch (Exception e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
     }
 }

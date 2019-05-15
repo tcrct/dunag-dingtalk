@@ -22,7 +22,8 @@ public class Duang {
                                .corpId("dingdf8af56f5b1ad87935c2f4657eb6378f")
                                .agentId("259917663")
                                .callbackUrl("https://dev.signetz.com/dingtalk/callback")
-                               .token("5c691d2553837344133787d95c691d25538373441337")
+                               .token("123456")
+                               .encodingAesKey("5c691d2553837344133787d95c691d2553837344133")
                                 .build()));
                         }
                 })

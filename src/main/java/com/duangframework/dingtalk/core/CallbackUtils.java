@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -67,9 +68,10 @@ public class CallbackUtils {
          */
         registerRequest.setCallBackTag(CALLBACK_EVENT_LIST);
         try {
+            registerRequest.setHttpMethod(HttpMethod.POST.name());
             OapiCallBackRegisterCallBackResponse registerResponse = client.execute(registerRequest, AuthUtils.getAccessToken());
             if (registerResponse.isSuccess()) {
-                System.err.println("回调注册成功了！！！");
+                System.err.println("############### 回调注册成功！");
             }
         } catch (Exception e) {
             logger.warn(e.getMessage(),e);

@@ -31,19 +31,11 @@ public class CallbackController extends BaseController {
         /**url中的随机字符串**/
         String nonce = getRequest().getParameter("nonce");
         /**post数据包数据中的加密数据**/
-        String encrypt = "";
-        InputStream is = getInputStream();
-        if(ToolsKit.isNotEmpty(is)) {
-            try {
-                String postString = IOUtils.toString(getInputStream());
-                JSONObject jsonEncrypt = JSONObject.parseObject(postString);
-                encrypt = jsonEncrypt.getString("encrypt");
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                IOUtils.closeQuietly(is);
-            }
+        String encrypt = getRequest().getParameter("encrypt");
+        try {
+            returnJson(callbackService.callback(signature, timeStamp, nonce, encrypt));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        callbackService.callback(signature, timeStamp, nonce, encrypt);
     }
 }

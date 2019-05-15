@@ -31,6 +31,7 @@ public class DingTalkConfig {
         this.agentId = builder.agentId;
         this.callbackUrl = builder.callbackUrl;
         this.token = builder.token;
+        this.encodingAesKey = builder.encodingAesKey;
     }
 
     public DingTalkConfig(String appKey, String appSecret, String corpId, String agentId, String callbackUrl, String token,String encodingAesKey) {
