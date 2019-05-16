@@ -1,10 +1,10 @@
-package com.duangframework.dingtalk.core;
+package com.duangframework.dingtalk.sdk.core;
 
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
-import com.duangframework.dingtalk.dto.DingtalkResponse;
+import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.utils.AuthUtils;
 import com.duangframework.dingtalk.utils.DingTalkUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
@@ -52,15 +52,15 @@ public class RoleUtils {
      *
      *   https://oapi.dingtalk.com/topapi/role/simplelist?access_token=ACCESS_TOKEN
      *
-     * @param  role_id   角色ID
+     * @param  roleId   角色ID
      * @param  size      分页大小，默认值：20，最大值200
      * @param  offset    分页偏移，默认值：0
      */
-    public static DingtalkResponse<OapiRoleSimplelistResponse> getRoleUnderList(long offset, long size, long role_id) {
+    public static DingtalkResponse<OapiRoleSimplelistResponse> getRoleUnderList(long offset, long size, long roleId) {
         try {
             DingTalkClient client = new DefaultDingTalkClient(GET_ROLE_UNDER_LIST_API);
             OapiRoleSimplelistRequest request = new OapiRoleSimplelistRequest();
-            request.setRoleId(role_id);
+            request.setRoleId(roleId);
             request.setOffset(offset);
             request.setSize(size);
             request.setHttpMethod(HttpMethod.POST.name());

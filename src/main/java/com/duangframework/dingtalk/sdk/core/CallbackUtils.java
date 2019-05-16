@@ -1,4 +1,4 @@
-package com.duangframework.dingtalk.core;
+package com.duangframework.dingtalk.sdk.core;
 
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
@@ -6,14 +6,12 @@ import com.dingtalk.api.request.OapiCallBackDeleteCallBackRequest;
 import com.dingtalk.api.request.OapiCallBackRegisterCallBackRequest;
 import com.dingtalk.api.response.OapiCallBackRegisterCallBackResponse;
 import com.duangframework.dingtalk.utils.AuthUtils;
-import com.duangframework.dingtalk.utils.DingTalkConfig;
 import com.duangframework.dingtalk.utils.DingTalkUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**

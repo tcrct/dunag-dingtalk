@@ -40,16 +40,16 @@
     <dependency>
       <groupId>com.dingtalk.api</groupId>
       <artifactId>client-sdk</artifactId>
-      <version>1.0-SNAPSHOT</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/taobao-sdk-java-auto_1479188381469-20190510.jar</systemPath>
+      <version>1.0</version>
+      <!--<scope>system</scope>-->
+      <!--<systemPath>${project.basedir}/lib/taobao-sdk-java-auto_1479188381469-20190510.jar</systemPath>-->
     </dependency>
     <dependency>
-      <groupId>om.laiwang.lippi</groupId>
+      <groupId>com.laiwang.lippi</groupId>
       <artifactId>lippi.oapi.encryt</artifactId>
-      <version>1.0.4-SNAPSHOT</version>
-      <scope>system</scope>
-      <systemPath>${project.basedir}/lib/lippi-oapi-encrpt.jar</systemPath>
+      <version>1.0</version>
+      <!--<scope>system</scope>-->
+      <!--<systemPath>${project.basedir}/lib/lippi-oapi-encrpt.jar</systemPath>-->
     </dependency>
   </dependencies>
 

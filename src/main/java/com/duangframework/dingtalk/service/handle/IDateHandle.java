@@ -1,6 +1,6 @@
 package com.duangframework.dingtalk.service.handle;
 
-import com.duangframework.dingtalk.dto.DingtalkResponse;
+import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 
 public interface IDateHandle<T> {
 

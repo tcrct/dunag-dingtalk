@@ -1,6 +1,6 @@
 package com.duangframework.dingtalk.service;
 
-import com.duangframework.dingtalk.dto.DingtalkResponse;
+import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.service.handle.IDateHandle;
 import com.duangframework.kit.ObjectKit;
 import com.duangframework.kit.PropKit;

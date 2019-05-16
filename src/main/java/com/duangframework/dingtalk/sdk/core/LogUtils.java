@@ -1,4 +1,4 @@
-package com.duangframework.dingtalk.core;
+package com.duangframework.dingtalk.sdk.core;
 
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
@@ -8,15 +8,13 @@ import com.dingtalk.api.request.OapiReportTemplateListbyuseridRequest;
 import com.dingtalk.api.response.OapiReportGetunreadcountResponse;
 import com.dingtalk.api.response.OapiReportListResponse;
 import com.dingtalk.api.response.OapiReportTemplateListbyuseridResponse;
-import com.duangframework.dingtalk.dto.DingtalkResponse;
+import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.utils.AuthUtils;
-import com.duangframework.kit.ToolsKit;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 日志

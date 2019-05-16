@@ -1,4 +1,4 @@
-package com.duangframework.dingtalk.dto;
+package com.duangframework.dingtalk.sdk.dto;
 
 /**
  *

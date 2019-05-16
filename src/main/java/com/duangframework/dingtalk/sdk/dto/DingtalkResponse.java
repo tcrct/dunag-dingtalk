@@ -1,4 +1,4 @@
-package com.duangframework.dingtalk.dto;
+package com.duangframework.dingtalk.sdk.dto;
 
 import com.duangframework.kit.ToolsKit;
 
@@ -8,7 +8,7 @@ import java.util.Map;
  * 返回结果
  * @param <T>
  */
-public class DingtalkResponse<T> implements  IDingtalk<T>   {
+public class DingtalkResponse<T> implements IDingtalk<T> {
 
     private long beginTime = System.currentTimeMillis();
     private String resultClassName;

@@ -1,13 +1,13 @@
-package com.duangframework.dingtalk.core;
+package com.duangframework.dingtalk.sdk.core;
 
 import com.alibaba.fastjson.JSON;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
-import com.duangframework.dingtalk.dto.DingtalkResponse;
-import com.duangframework.dingtalk.dto.UserDto;
-import com.duangframework.dingtalk.dto.UserUpdateDto;
+import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
+import com.duangframework.dingtalk.sdk.dto.UserDto;
+import com.duangframework.dingtalk.sdk.dto.UserUpdateDto;
 import com.duangframework.dingtalk.utils.AuthUtils;
 import com.duangframework.kit.ObjectKit;
 import com.duangframework.kit.ToolsKit;

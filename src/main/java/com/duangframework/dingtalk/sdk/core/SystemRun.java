@@ -1,8 +1,5 @@
-package com.duangframework.dingtalk.core;
+package com.duangframework.dingtalk.sdk.core;
 
-import com.dingtalk.api.DefaultDingTalkClient;
-import com.dingtalk.api.DingTalkClient;
-import com.dingtalk.api.request.OapiCallBackDeleteCallBackRequest;
 import com.duangframework.mvc.core.InitRun;
 
 /**
@@ -17,6 +14,6 @@ public class SystemRun implements InitRun {
 
     @Override
     public void after() throws Exception {
-        DingtalkHolder.CALLBACK.reg();
+//        DingtalkHolder.CALLBACK.reg();
     }
 }

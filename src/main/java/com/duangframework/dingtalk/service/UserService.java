@@ -1,10 +1,9 @@
 package com.duangframework.dingtalk.service;
 
 import com.dingtalk.api.response.OapiUserCreateResponse;
-import com.duangframework.dingtalk.core.DingtalkHolder;
-import com.duangframework.dingtalk.dto.DingtalkResponse;
-import com.duangframework.dingtalk.dto.UserDto;
-import com.duangframework.dingtalk.service.handle.IDateHandle;
+import com.duangframework.dingtalk.sdk.core.DingtalkHolder;
+import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
+import com.duangframework.dingtalk.sdk.dto.UserDto;
 import com.duangframework.exception.ServiceException;
 import com.duangframework.kit.ToolsKit;
 import com.duangframework.mvc.annotation.Service;

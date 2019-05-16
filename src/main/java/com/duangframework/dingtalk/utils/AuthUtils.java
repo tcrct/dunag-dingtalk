@@ -3,7 +3,7 @@ package com.duangframework.dingtalk.utils;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.request.OapiGettokenRequest;
 import com.dingtalk.api.response.OapiGettokenResponse;
-import com.duangframework.dingtalk.dto.DingtalkResponse;
+import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 import io.netty.handler.codec.http.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
