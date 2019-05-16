@@ -141,8 +141,12 @@ public class DingTalkUtils {
      * @return
      */
     public static IStrategy getStrategy(String type) {
-        EventTypeEnum typeEnum = EventTypeEnum.valueOf(type);
-        return ToolsKit.isNotEmpty(typeEnum) ? typeEnum.getStrategy() : null;
+        for(EventTypeEnum typeEnum : EventTypeEnum.values()) {
+            if(typeEnum.getType().equalsIgnoreCase(type)) {
+                return typeEnum.getStrategy();
+            }
+        }
+        return null;
     }
 
 }

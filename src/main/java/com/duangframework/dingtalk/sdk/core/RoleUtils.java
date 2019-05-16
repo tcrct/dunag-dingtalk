@@ -5,7 +5,7 @@ import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.dingtalk.utils.DingTalkUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import org.slf4j.Logger;
@@ -38,7 +38,7 @@ public class RoleUtils {
             request.setOffset(offset);
             request.setSize(size);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiRoleListResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiRoleListResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取角色列表时出错: " + e.getMessage(), e);
@@ -64,7 +64,7 @@ public class RoleUtils {
             request.setOffset(offset);
             request.setSize(size);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiRoleSimplelistResponse response = client.execute(request,  AuthUtils.getAccessToken());
+            OapiRoleSimplelistResponse response = client.execute(request,  DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取角色下的员工列表时出错: " + e.getMessage(), e);
@@ -86,7 +86,7 @@ public class RoleUtils {
             OapiRoleGetrolegroupRequest request = new OapiRoleGetrolegroupRequest();
             request.setGroupId(groupId);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiRoleGetrolegroupResponse response = client.execute(request,  AuthUtils.getAccessToken());
+            OapiRoleGetrolegroupResponse response = client.execute(request,  DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取角色组时出错: " + e.getMessage(), e);
@@ -108,7 +108,7 @@ public class RoleUtils {
             OapiRoleGetroleRequest req = new OapiRoleGetroleRequest();
             req.setRoleId(roleId);
             req.setHttpMethod(HttpMethod.POST.name());
-            OapiRoleGetroleResponse rsp = client.execute(req, AuthUtils.getAccessToken());
+            OapiRoleGetroleResponse rsp = client.execute(req, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(rsp);
         } catch (Exception e) {
             logger.warn("获取角色详情时出错: " + e.getMessage(), e);
@@ -132,7 +132,7 @@ public class RoleUtils {
             req.setRoleName(roleName);
             req.setGroupId(groupId);
             req.setHttpMethod(HttpMethod.POST.name());
-            OapiRoleAddroleResponse rsp = client.execute(req, AuthUtils.getAccessToken());
+            OapiRoleAddroleResponse rsp = client.execute(req, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(rsp);
         } catch (Exception e) {
             logger.warn("创建角色时出错: " + e.getMessage(), e);
@@ -156,7 +156,7 @@ public class RoleUtils {
             req.setRoleId(roleId);
             req.setRoleName(roleName);
             req.setHttpMethod(HttpMethod.POST.name());
-            OapiRoleUpdateroleResponse rsp = client.execute(req, AuthUtils.getAccessToken());
+            OapiRoleUpdateroleResponse rsp = client.execute(req, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(rsp);
         } catch (Exception e) {
             logger.warn("更新角色时出错: " + e.getMessage(), e);
@@ -178,7 +178,7 @@ public class RoleUtils {
             OapiRoleDeleteroleRequest request = new OapiRoleDeleteroleRequest();
             request.setRoleId(roleId);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiRoleDeleteroleResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiRoleDeleteroleResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("删除角色时出错: " + e.getMessage(), e);
@@ -200,7 +200,7 @@ public class RoleUtils {
             OapiRoleAddrolegroupRequest req = new OapiRoleAddrolegroupRequest();
             req.setName(name);
             req.setHttpMethod(HttpMethod.POST.name());
-            OapiRoleAddrolegroupResponse rsp = client.execute(req, AuthUtils.getAccessToken());
+            OapiRoleAddrolegroupResponse rsp = client.execute(req, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(rsp);
         } catch (Exception e) {
             logger.warn("创建角色组时出错: " + e.getMessage(), e);
@@ -225,7 +225,7 @@ public class RoleUtils {
             request.setRoleIds(DingTalkUtils.collections2String(roleIds, ","));
             request.setUserIds(DingTalkUtils.collections2String(userIds, ","));
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiRoleAddrolesforempsResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiRoleAddrolesforempsResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn(" 批量增加员工角色时出错: " + e.getMessage(), e);
@@ -249,7 +249,7 @@ public class RoleUtils {
             request.setRoleIds(DingTalkUtils.collections2String(roleIds,","));
             request.setUserIds(DingTalkUtils.collections2String(userIds,","));
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiRoleRemoverolesforempsResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiRoleRemoverolesforempsResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn(" 批量删除员工角色时出错: " + e.getMessage(), e);

@@ -6,7 +6,7 @@ import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 
 import java.util.Date;
@@ -37,7 +37,7 @@ public class CheckOnWorkAttendanceUtils {
             request.setOffset(offset);
             request.setSize(size);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiAttendanceListscheduleResponse execute = client.execute(request,AuthUtils.getAccessToken());
+            OapiAttendanceListscheduleResponse execute = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(execute);
         } catch (Exception e) {
             throw new ServiceException("企业考勤排班详情时出错: " + e.getMessage(), e);
@@ -58,7 +58,7 @@ public class CheckOnWorkAttendanceUtils {
             DingTalkClient client = new DefaultDingTalkClient(ENTERPRISE_CHECK_ON_WORK_ATTENDANCE_GROUP_DETAILS_API);
             OapiAttendanceGetsimplegroupsRequest request = new OapiAttendanceGetsimplegroupsRequest();
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiAttendanceGetsimplegroupsResponse execute = client.execute(request,AuthUtils.getAccessToken());
+            OapiAttendanceGetsimplegroupsResponse execute = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(execute);
         } catch (Exception e) {
             throw new ServiceException("企业考勤排班详情时出错: " + e.getMessage(), e);
@@ -142,7 +142,7 @@ public class CheckOnWorkAttendanceUtils {
             request.setToDate(toDate);
             request.setUserid(userId);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiAttendanceGetleaveapprovedurationResponse response = client.execute(request,AuthUtils.getAccessToken());
+            OapiAttendanceGetleaveapprovedurationResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("获取请假时长时出错: " + e.getMessage(), e);
@@ -171,7 +171,7 @@ public class CheckOnWorkAttendanceUtils {
             req.setOffset(offset);
             req.setSize(size);
             req.setHttpMethod(HttpMethod.POST.name());
-            OapiAttendanceGetleavestatusResponse rsp = client.execute(req, AuthUtils.getAccessToken());
+            OapiAttendanceGetleavestatusResponse rsp = client.execute(req, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(rsp);
         } catch (Exception e) {
             throw new ServiceException("查询请假状态时出错: " + e.getMessage(), e);
@@ -192,7 +192,7 @@ public class CheckOnWorkAttendanceUtils {
             OapiAttendanceGetusergroupRequest request = new OapiAttendanceGetusergroupRequest();
             request.setUserid(userId);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiAttendanceGetusergroupResponse execute = client.execute(request,AuthUtils.getAccessToken());
+            OapiAttendanceGetusergroupResponse execute = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(execute);
         } catch (Exception e) {
             throw new ServiceException("获取用户考勤组时出错: " + e.getMessage(), e);

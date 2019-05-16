@@ -9,7 +9,7 @@ package com.duangframework.dingtalk.service.strategy;
 public enum EventTypeEnum {
 
     USER_MODIFY_ORG("user_modify_org", "通讯录用户更改", new UserModifyOrgStrategy()),
-    BPMS_TASK_CHANGE("bpms_task_change", "审批任务开始/结束", new BpmsTaskChangeStrategy()),
+//    BPMS_TASK_CHANGE("bpms_task_change", "审批任务开始/结束", new BpmsTaskChangeStrategy()),
     BPMS_INSTANCE_CHANGE("bpms_instance_change", "审批实例开始/结束", new BpmsInstanceChangeStrategy()),
 
     ;

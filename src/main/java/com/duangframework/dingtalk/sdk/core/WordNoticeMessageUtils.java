@@ -7,7 +7,7 @@ import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.sdk.dto.MessageBodyDto;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.dingtalk.utils.DingTalkUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import java.util.List;
@@ -95,7 +95,7 @@ public class WordNoticeMessageUtils {
             }
             request.setMsg(msgs);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiMessageCorpconversationAsyncsendV2Response response = client.execute(request, AuthUtils.getAccessToken());
+            OapiMessageCorpconversationAsyncsendV2Response response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("发送工作通知消息时出错: " + e.getMessage(), e);
@@ -118,7 +118,7 @@ public class WordNoticeMessageUtils {
             request.setAgentId(agentId);
             request.setTaskId(taskId);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiMessageCorpconversationGetsendprogressResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiMessageCorpconversationGetsendprogressResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("查询工作通知消息的发送进度时出错: " + e.getMessage(), e);
@@ -141,7 +141,7 @@ public class WordNoticeMessageUtils {
             request.setAgentId(agentId);
             request.setTaskId(taskId);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiMessageCorpconversationGetsendresultResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiMessageCorpconversationGetsendresultResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("查询工作通知消息的发送结果时出错: " + e.getMessage(), e);

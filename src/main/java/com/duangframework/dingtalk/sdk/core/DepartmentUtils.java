@@ -6,7 +6,7 @@ import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.duangframework.dingtalk.sdk.dto.DepartmentDto;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.kit.ObjectKit;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import org.slf4j.Logger;
@@ -34,7 +34,7 @@ public class DepartmentUtils {
             OapiDepartmentListIdsRequest request = new OapiDepartmentListIdsRequest();
             request.setId(departId);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiDepartmentListIdsResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiDepartmentListIdsResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取子部门ID列表出错: " + e.getMessage(), e);
@@ -58,7 +58,7 @@ public class DepartmentUtils {
             }
             request.setId(departId);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiDepartmentListResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiDepartmentListResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取部门列表出错："+ e.getMessage(), e);
@@ -79,7 +79,7 @@ public class DepartmentUtils {
             OapiDepartmentGetRequest request = new OapiDepartmentGetRequest();
             request.setId(departId);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiDepartmentGetResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiDepartmentGetResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取部门详情出错："+ e.getMessage(), e);
@@ -100,7 +100,7 @@ public class DepartmentUtils {
             OapiDepartmentListParentDeptsByDeptRequest request = new OapiDepartmentListParentDeptsByDeptRequest();
             request.setId(departId);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiDepartmentListParentDeptsByDeptResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiDepartmentListParentDeptsByDeptResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("查询部门的所有上级父部门路径时出错："+ e.getMessage(), e);
@@ -121,7 +121,7 @@ public class DepartmentUtils {
             OapiDepartmentListParentDeptsRequest  request = new OapiDepartmentListParentDeptsRequest();
             request.setUserId(userId);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiDepartmentListParentDeptsResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiDepartmentListParentDeptsResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("查询指定用户的所有上级父部门路径时出错："+ e.getMessage(), e);
@@ -142,7 +142,7 @@ public class DepartmentUtils {
             OapiUserGetOrgUserCountRequest   request = new OapiUserGetOrgUserCountRequest();
             request.setOnlyActive(active);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiUserGetOrgUserCountResponse  response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserGetOrgUserCountResponse  response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("查询指定用户的所有上级父部门路径时出错："+ e.getMessage(), e);
@@ -163,7 +163,7 @@ public class DepartmentUtils {
             OapiDepartmentCreateRequest request = new OapiDepartmentCreateRequest();
             ObjectKit.copyFields(departmentDto, request);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiDepartmentCreateResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiDepartmentCreateResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("创建部门时出错："+ e.getMessage(), e);
@@ -184,7 +184,7 @@ public class DepartmentUtils {
             OapiDepartmentUpdateRequest request = new OapiDepartmentUpdateRequest();
             ObjectKit.copyFields(departmentDto, request);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiDepartmentUpdateResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiDepartmentUpdateResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("更新部门时出错："+ e.getMessage(), e);
@@ -205,7 +205,7 @@ public class DepartmentUtils {
             OapiDepartmentDeleteRequest request = new OapiDepartmentDeleteRequest();
             request.setId(departId);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiDepartmentDeleteResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiDepartmentDeleteResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("更新部门时出错："+ e.getMessage(), e);

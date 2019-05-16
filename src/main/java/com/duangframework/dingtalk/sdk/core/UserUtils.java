@@ -8,7 +8,7 @@ import com.dingtalk.api.response.*;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.sdk.dto.UserDto;
 import com.duangframework.dingtalk.sdk.dto.UserUpdateDto;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.kit.ObjectKit;
 import com.duangframework.kit.ToolsKit;
 import com.duangframework.mvc.http.enums.HttpMethod;
@@ -40,7 +40,7 @@ public class UserUtils {
             OapiUserGetRequest request = new OapiUserGetRequest();
             request.setUserid(userId);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiUserGetResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserGetResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取用户详情时出错: " + e.getMessage(), e);
@@ -62,7 +62,7 @@ public class UserUtils {
             OapiUserGetDeptMemberRequest  request = new OapiUserGetDeptMemberRequest();
             request.setDeptId(deptId);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiUserGetDeptMemberResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserGetDeptMemberResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取部门用户userid列表时出错: " + e.getMessage(), e);
@@ -97,7 +97,7 @@ public class UserUtils {
                 request.setOrder(order[0]);
             }
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiUserSimplelistResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserSimplelistResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取部门用户时出错: " + e.getMessage(), e);
@@ -132,7 +132,7 @@ public class UserUtils {
                 request.setOrder(order[0]);
             }
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiUserListbypageResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserListbypageResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取部门用户时出错: " + e.getMessage(), e);
@@ -150,7 +150,7 @@ public class UserUtils {
             DingTalkClient client = new DefaultDingTalkClient(GET_USER_LIST_DETAILS_API);
             OapiUserGetAdminRequest request = new OapiUserGetAdminRequest();
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiUserGetAdminResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserGetAdminResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取部门用户时出错: " + e.getMessage(), e);
@@ -170,7 +170,7 @@ public class UserUtils {
             DingTalkClient client = new DefaultDingTalkClient(GET_ADMIN_SCOPE_API);
             OapiUserGetAdminScopeRequest request = new OapiUserGetAdminScopeRequest();
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiUserGetAdminScopeResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserGetAdminScopeResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取管理员通讯录权限范围时出错: " + e.getMessage(), e);
@@ -191,7 +191,7 @@ public class UserUtils {
             OapiUserGetUseridByUnionidRequest  request = new OapiUserGetUseridByUnionidRequest();
             request.setUnionid(unionId);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiUserGetUseridByUnionidResponse  response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserGetUseridByUnionidResponse  response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("根据unionid获取userid时出错: " + e.getMessage(), e);
@@ -216,7 +216,7 @@ public class UserUtils {
                 request.setDepartment(JSON.toJSONString(userDto.getDepartmentList()));
             }
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiUserCreateResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserCreateResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("创建用户时出错: " + e.getMessage(), e);
@@ -237,7 +237,7 @@ public class UserUtils {
             OapiUserUpdateRequest request = new OapiUserUpdateRequest();
             ObjectKit.copyFields(userDto, request);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiUserUpdateResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserUpdateResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("创建用户时出错: " + e.getMessage(), e);
@@ -258,7 +258,7 @@ public class UserUtils {
             OapiUserDeleteRequest request = new OapiUserDeleteRequest();
             request.setUserid(userId);
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiUserDeleteResponse  response = client.execute(request, AuthUtils.getAccessToken());
+            OapiUserDeleteResponse  response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("创建用户时出错: " + e.getMessage(), e);

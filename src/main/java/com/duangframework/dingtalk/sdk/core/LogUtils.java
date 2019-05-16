@@ -9,7 +9,7 @@ import com.dingtalk.api.response.OapiReportGetunreadcountResponse;
 import com.dingtalk.api.response.OapiReportListResponse;
 import com.dingtalk.api.response.OapiReportTemplateListbyuseridResponse;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +50,7 @@ public class LogUtils {
             request.setSize(size);
             request.setTemplateName(templateName);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiReportListResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiReportListResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取用户日志数据时出错: " + e.getMessage(), e);
@@ -78,7 +78,7 @@ public class LogUtils {
             req.setOffset(offset);
             req.setSize(size);
             req.setHttpMethod(HttpMethod.POST.name());
-            OapiReportTemplateListbyuseridResponse rsp = client.execute(req, AuthUtils.getAccessToken());
+            OapiReportTemplateListbyuseridResponse rsp = client.execute(req, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(rsp);
         } catch (Exception e) {
             logger.warn("获取用户可见的日志模板时出错: " + e.getMessage(), e);
@@ -102,7 +102,7 @@ public class LogUtils {
             OapiReportGetunreadcountRequest request = new OapiReportGetunreadcountRequest();
             request.setUserid(userId);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiReportGetunreadcountResponse response = client.execute(request,AuthUtils.getAccessToken());
+            OapiReportGetunreadcountResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取用户日志未读数: " + e.getMessage(), e);

@@ -7,7 +7,7 @@ import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.sdk.dto.ProcessDto;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.kit.ObjectKit;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import java.util.Date;
@@ -31,7 +31,7 @@ public class ProcessUtils {
             OapiProcessinstanceCreateRequest request = new OapiProcessinstanceCreateRequest();
             ObjectKit.copyFields(processDto, request);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiProcessinstanceCreateResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiProcessinstanceCreateResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("发起审批实例出错: " + e.getMessage(), e);
@@ -62,7 +62,7 @@ public class ProcessUtils {
             req.setCursor(cursor);
             req.setUseridList(useridList);
             req.setHttpMethod(HttpMethod.POST.name());
-            OapiProcessinstanceListidsResponse response = client.execute(req, AuthUtils.getAccessToken());
+            OapiProcessinstanceListidsResponse response = client.execute(req, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("发起审批时出错: " + e.getMessage(), e);
@@ -83,7 +83,7 @@ public class ProcessUtils {
             OapiProcessinstanceGetRequest request = new OapiProcessinstanceGetRequest();
             request.setProcessInstanceId(processInstanceId);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiProcessinstanceGetResponse response = client.execute(request,AuthUtils.getAccessToken());
+            OapiProcessinstanceGetResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("获取单个审批时出错: " + e.getMessage(), e);
@@ -104,7 +104,7 @@ public class ProcessUtils {
             OapiProcessGettodonumRequest req = new OapiProcessGettodonumRequest();
             req.setUserid(userId);
             req.setHttpMethod(HttpMethod.POST.name());
-            OapiProcessGettodonumResponse rsp = client.execute(req, AuthUtils.getAccessToken());
+            OapiProcessGettodonumResponse rsp = client.execute(req, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(rsp);
         } catch (Exception e) {
             throw new ServiceException("获取单个审批时出错: " + e.getMessage(), e);
@@ -129,7 +129,7 @@ public class ProcessUtils {
             request.setOffset(offset);
             request.setSize(size);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiProcessListbyuseridResponse rsp = client.execute(request, AuthUtils.getAccessToken());
+            OapiProcessListbyuseridResponse rsp = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(rsp);
         } catch (Exception e) {
             throw new ServiceException("获取用户可见的审批时出错: " + e.getMessage(), e);

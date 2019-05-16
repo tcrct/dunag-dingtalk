@@ -8,7 +8,7 @@ import com.dingtalk.api.request.OapiMessageSendToConversationRequest;
 import com.dingtalk.api.response.OapiMessageSendToConversationResponse;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.sdk.dto.MessageBodyDto;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 
 /**
@@ -82,7 +82,7 @@ public class SendOrdinaryMessageUtils {
             }
             req.setMsg(msgs);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiMessageSendToConversationResponse response = client.execute(req, AuthUtils.getAccessToken());
+            OapiMessageSendToConversationResponse response = client.execute(req, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("发送工作通知消息时出错: " + e.getMessage(), e);

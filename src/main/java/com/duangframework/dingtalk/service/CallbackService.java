@@ -19,6 +19,9 @@ import java.util.Map;
 public class CallbackService {
 
     private final static Logger logger = LoggerFactory.getLogger(CallbackService.class);
+    private final static String CHECK_URL = "check_url";
+    private final static String EVENT_TYPE = "EventType";
+    private final static String SUCCESS = "success";
 
     public Map<String, String> callback(String signature, String timeStamp, String nonce, String encrypt) {
         if(ToolsKit.isEmpty(signature) || ToolsKit.isEmpty(timeStamp) || ToolsKit.isEmpty(nonce)) {
@@ -31,7 +34,7 @@ public class CallbackService {
         if(ToolsKit.isEmpty(callbackMap)) {
             throw new ServiceException("根据解密的字符串转换成Map时出错: Map为空");
         }
-        String eventType = callbackMap.get("EventType") + "";
+        String eventType = callbackMap.get(EVENT_TYPE) + "";
 
 //        switch (eventType) {
 //            case "user_modify_org" :
@@ -49,13 +52,15 @@ public class CallbackService {
 
 
         try {
-            IStrategy strategy = DingTalkUtils.getStrategy(eventType);
-            if(ToolsKit.isEmpty(strategy)) {
-                throw new ServiceException("没有找到对应的策略类进行实施操作");
+            if(!CHECK_URL.equalsIgnoreCase(eventType)) {
+                IStrategy strategy = DingTalkUtils.getStrategy(eventType);
+                if(ToolsKit.isNotEmpty(strategy)) {
+                    // throw new ServiceException("没有找到对应的策略类进行实施操作");
+                    strategy.handle(plainText);
+                }
             }
-            strategy.handle(plainText);
             // 返回success的加密信息表示回调处理成功
-            return DingTalkUtils.getEncryptedMap("success", System.currentTimeMillis(), DingTalkUtils.getRandomStr(8));
+            return DingTalkUtils.getEncryptedMap(SUCCESS, System.currentTimeMillis(), DingTalkUtils.getRandomStr(8));
         } catch (Exception e) {
             throw new ServiceException(e.getMessage(), e);
         }

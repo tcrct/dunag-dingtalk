@@ -4,8 +4,10 @@ import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.OapiCallBackDeleteCallBackRequest;
 import com.dingtalk.api.request.OapiCallBackRegisterCallBackRequest;
+import com.dingtalk.api.response.OapiCallBackDeleteCallBackResponse;
 import com.dingtalk.api.response.OapiCallBackRegisterCallBackResponse;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.service.strategy.EventTypeEnum;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.dingtalk.utils.DingTalkUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import org.slf4j.Logger;
@@ -22,13 +24,6 @@ import java.util.List;
 public class CallbackUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(CallbackUtils.class);
-    /**注册回调事件*/
-    private static final List<String> CALLBACK_EVENT_LIST = new ArrayList<String>(){{
-        this.add("user_add_org");
-        this.add("user_modify_org");
-        this.add("bpms_instance_change");
-        this.add("bpms_task_change");
-    }} ;
 
     /**
      * 删除企业回调接口url
@@ -40,6 +35,13 @@ public class CallbackUtils {
     public static final String REGISTER_CALLBACK = "https://oapi.dingtalk.com/call_back/register_call_back";
 
     public static void reg() {
+
+        /**注册回调事件*/
+        List<String> callbackEventList = new ArrayList<>();
+        for(EventTypeEnum typeEnum : EventTypeEnum.values()){
+            callbackEventList.add(typeEnum.getType().trim());
+        }
+        String accessToken = "";
         /**
          * 先删除企业已有的回调
          */
@@ -47,7 +49,11 @@ public class CallbackUtils {
         OapiCallBackDeleteCallBackRequest request = new OapiCallBackDeleteCallBackRequest();
         request.setHttpMethod(HttpMethod.GET.name());
         try {
-            client.execute(request, AuthUtils.getAccessToken());
+            accessToken = DingTalkAccessTokenUtils.getAccessToken();
+            OapiCallBackDeleteCallBackResponse deleteCallBackResponse = client.execute(request, accessToken);
+            if(deleteCallBackResponse.isSuccess()) {
+                logger.warn("删除已有回调事件成功");
+            }
         } catch (Exception e) {
             logger.warn(e.getMessage(), e);
         }
@@ -64,12 +70,12 @@ public class CallbackUtils {
          * 需要注册的回调事件
          * 参考 https://open-doc.dingtalk.com/microapp/serverapi2/skn8ld
          */
-        registerRequest.setCallBackTag(CALLBACK_EVENT_LIST);
+        registerRequest.setCallBackTag(callbackEventList);
         try {
             registerRequest.setHttpMethod(HttpMethod.POST.name());
-            OapiCallBackRegisterCallBackResponse registerResponse = client.execute(registerRequest, AuthUtils.getAccessToken());
+            OapiCallBackRegisterCallBackResponse registerResponse = client.execute(registerRequest, accessToken);
             if (registerResponse.isSuccess()) {
-                System.err.println("############### 回调注册成功！");
+                logger.warn("回调事件注册成功");
             }
         } catch (Exception e) {
             logger.warn(e.getMessage(),e);

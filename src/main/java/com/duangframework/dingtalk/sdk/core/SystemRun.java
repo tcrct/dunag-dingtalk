@@ -1,6 +1,9 @@
 package com.duangframework.dingtalk.sdk.core;
 
+import com.duangframework.kit.HttpKit;
+import com.duangframework.kit.ThreadPoolKit;
 import com.duangframework.mvc.core.InitRun;
+import com.duangframework.net.http.HttpResult;
 
 /**
  * @author laotang
@@ -14,6 +17,12 @@ public class SystemRun implements InitRun {
 
     @Override
     public void after() throws Exception {
-//        DingtalkHolder.CALLBACK.reg();
+        // 须以线程方式进行处理
+        ThreadPoolKit.execute(new Runnable() {
+            @Override
+            public void run() {
+                DingtalkHolder.CALLBACK.reg();
+            }
+        });
     }
 }

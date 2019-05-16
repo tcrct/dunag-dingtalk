@@ -7,7 +7,7 @@ import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 
 /**
@@ -29,7 +29,7 @@ public class AddressBookPermissionScopeUtils {
             DingTalkClient client = new DefaultDingTalkClient(GET_ADDRESS_BOOK_PERMISSION_SCOPE_API);
             OapiAuthScopesRequest request = new OapiAuthScopesRequest();
             request.setHttpMethod(HttpMethod.GET.name());
-            OapiAuthScopesResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiAuthScopesResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("获取通讯录权限范围时出错: " + e.getMessage(), e);

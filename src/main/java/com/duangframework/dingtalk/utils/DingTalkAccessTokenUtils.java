@@ -16,9 +16,9 @@ import java.util.Map;
  * @author laotang
  * @date 2019/5/9.
  */
-public class AuthUtils {
+public class DingTalkAccessTokenUtils {
 
-    private final static Logger logger = LoggerFactory.getLogger(AuthUtils.class);
+    private final static Logger logger = LoggerFactory.getLogger(DingTalkAccessTokenUtils.class);
 
     private static final Map<String, DingtalkResponse> TOKEN_RESPONSE_MAP = new HashMap<>();
 

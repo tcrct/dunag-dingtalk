@@ -6,7 +6,7 @@ import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
-import com.duangframework.dingtalk.utils.AuthUtils;
+import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class ExternalContactManagementUtils {
             request.setOffset(offset);
             request.setSize(size);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiExtcontactListlabelgroupsResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiExtcontactListlabelgroupsResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("获取外部联系人标签列表时出错: " + e.getMessage(), e);
@@ -56,7 +56,7 @@ public class ExternalContactManagementUtils {
             request.setOffset(offset);
             request.setSize(size);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiExtcontactListResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiExtcontactListResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("获取外部联系人列表时出错: " + e.getMessage(), e);
@@ -78,7 +78,7 @@ public class ExternalContactManagementUtils {
             OapiExtcontactGetRequest request = new OapiExtcontactGetRequest();
             request.setUserId(userId);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiExtcontactGetResponse response = client.execute(request,  AuthUtils.getAccessToken());
+            OapiExtcontactGetResponse response = client.execute(request,  DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("获取企业外部联系人详情时出错: " + e.getMessage(), e);
@@ -122,7 +122,7 @@ public class ExternalContactManagementUtils {
             openExtContact.setMobile(mobile);
             request.setContact(openExtContact);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiExtcontactCreateResponse  response = client.execute(request,  AuthUtils.getAccessToken());
+            OapiExtcontactCreateResponse  response = client.execute(request,  DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("添加外部联系人时出错: " + e.getMessage(), e);
@@ -164,7 +164,7 @@ public class ExternalContactManagementUtils {
             openExtContact.setShareUserIds(shareUserIds);
             request.setContact(openExtContact);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiExtcontactUpdateResponse response = client.execute(request,  AuthUtils.getAccessToken());
+            OapiExtcontactUpdateResponse response = client.execute(request,  DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("更新外部联系人时出错: " + e.getMessage(), e);
@@ -185,7 +185,7 @@ public class ExternalContactManagementUtils {
             OapiExtcontactDeleteRequest request = new OapiExtcontactDeleteRequest();
             request.setUserId(userId);
             request.setHttpMethod(HttpMethod.POST.name());
-            OapiExtcontactDeleteResponse response = client.execute(request, AuthUtils.getAccessToken());
+            OapiExtcontactDeleteResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             throw new ServiceException("删除外部联系人时出错: " + e.getMessage(), e);
