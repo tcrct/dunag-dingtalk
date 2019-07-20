@@ -46,6 +46,13 @@ public class DepartmentUtils {
     /**
      * 获取部门列表
      * https://oapi.dingtalk.com/department/list?access_token=ACCESS_TOKEN
+     */
+    public static DingtalkResponse<OapiDepartmentListResponse> getDepartmentList() {
+        return getDepartmentList("1");
+    }
+    /**
+     * 获取部门列表
+     * https://oapi.dingtalk.com/department/list?access_token=ACCESS_TOKEN
      *
      * @parem departId  父部门id（如果不传，默认部门为根部门，根部门ID为1)
      */
@@ -54,7 +61,7 @@ public class DepartmentUtils {
             DingTalkClient client = new DefaultDingTalkClient(DEPARTMENT_API);
             OapiDepartmentListRequest request = new OapiDepartmentListRequest();
             if(null == departId) {
-                departId = "1";
+               throw new NullPointerException("部门ID不能为空");
             }
             request.setId(departId);
             request.setHttpMethod(HttpMethod.GET.name());
