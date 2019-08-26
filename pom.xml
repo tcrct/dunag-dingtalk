@@ -53,4 +53,23 @@
     </dependency>
   </dependencies>
 
+  <!--排除resources文件夹-->
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+          <configuration>
+            <excludes>
+              <!--注意这玩意从编译结果目录开始算目录结构-->
+              <exclude>/**/*.properties</exclude>
+              <exclude>/**/*.xml</exclude>
+            </excludes>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>
