@@ -79,4 +79,10 @@ public class DingtalkHolder {
      */
     public static class NOTICE extends WordNoticeMessageUtils {
     }
+
+    /**
+     * SNS
+     */
+    public static class SNS extends  SnsUtils {
+    }
 }

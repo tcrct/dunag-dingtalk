@@ -1,9 +1,7 @@
 package com.duangframework.dingtalk.sdk.core;
 
-import com.duangframework.kit.HttpKit;
 import com.duangframework.kit.ThreadPoolKit;
 import com.duangframework.mvc.core.InitRun;
-import com.duangframework.net.http.HttpResult;
 
 /**
  * @author laotang
