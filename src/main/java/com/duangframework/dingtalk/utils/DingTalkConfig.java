@@ -19,6 +19,11 @@ public class DingTalkConfig {
     private String token;
     /** 加密关键字*/
     private String encodingAesKey;
+    /** 登录授权关键字*/
+    private String loginAppKey;
+    /** 登录授权安全码*/
+    private String loginAppSecret;
+
 
     public DingTalkConfig() {
         loadProp();
@@ -32,9 +37,11 @@ public class DingTalkConfig {
         this.callbackUrl = builder.callbackUrl;
         this.token = builder.token;
         this.encodingAesKey = builder.encodingAesKey;
+        this.loginAppKey = builder.loginAppKey;
+        this.loginAppSecret = builder.loginAppSecret;
     }
 
-    public DingTalkConfig(String appKey, String appSecret, String corpId, String agentId, String callbackUrl, String token,String encodingAesKey) {
+    public DingTalkConfig(String appKey, String appSecret, String corpId, String agentId, String callbackUrl, String token,String encodingAesKey,String loginAppKey, String loginAppSecret) {
         this.appKey = appKey;
         this.appSecret = appSecret;
         this.corpId = corpId;
@@ -42,6 +49,8 @@ public class DingTalkConfig {
         this.callbackUrl = callbackUrl;
         this.token = token;
         this.encodingAesKey = encodingAesKey;
+        this.loginAppKey = loginAppKey;
+        this.loginAppSecret = loginAppSecret;
     }
 
     private void loadProp() {
@@ -53,6 +62,8 @@ public class DingTalkConfig {
         callbackUrl = prop.get("dingtalk.callbackUrl");
         token = prop.get("dingtalk.token");
         encodingAesKey = prop.get("dingtalk.encodingAesKey");
+        loginAppKey = prop.get("dingtalk.login.appKey");
+        loginAppSecret= prop.get("dingtalk.login.appSecret");
     }
 
     public String getAppKey() {
@@ -111,9 +122,29 @@ public class DingTalkConfig {
         this.encodingAesKey = encodingAesKey;
     }
 
+    public String getLoginAppKey() {
+        return loginAppKey;
+    }
+
+    public void setLoginAppKey(String loginAppKey) {
+        this.loginAppKey = loginAppKey;
+    }
+
+    public String getLoginAppSecret() {
+        return loginAppSecret;
+    }
+
+    public void setLoginAppSecret(String loginAppSecret) {
+        this.loginAppSecret = loginAppSecret;
+    }
+
     public static class Builder {
         private String appKey;
         private String appSecret;
+
+        private String loginAppKey;
+        private String loginAppSecret;
+
         /**  企业ID*/
         private String corpId;
         /** 应用agentId*/
@@ -130,6 +161,14 @@ public class DingTalkConfig {
         }
         public Builder appSecret(String appSecret) {
             this.appSecret = appSecret;
+            return this;
+        }
+        public Builder loginAppKey(String loginAppKey) {
+            this.loginAppKey = loginAppKey;
+            return this;
+        }
+        public Builder loginAppSecret(String loginAppSecret) {
+            this.loginAppSecret = loginAppSecret;
             return this;
         }
         public Builder corpId(String corpId) {

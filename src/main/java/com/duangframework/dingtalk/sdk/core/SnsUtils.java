@@ -6,6 +6,7 @@ import com.dingtalk.api.request.OapiSnsGetuserinfoBycodeRequest;
 import com.dingtalk.api.response.OapiSnsGetuserinfoBycodeResponse;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
+import com.duangframework.dingtalk.utils.DingTalkUtils;
 import io.netty.handler.codec.http.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,8 +29,10 @@ public class SnsUtils {
             DingTalkClient client = new DefaultDingTalkClient(GET_USERINFO_BYCODE_API);
             OapiSnsGetuserinfoBycodeRequest request = new OapiSnsGetuserinfoBycodeRequest();
             request.setTmpAuthCode(code);
-            request.setHttpMethod(HttpMethod.GET.name());
-            OapiSnsGetuserinfoBycodeResponse response = client.execute(request, DingTalkAccessTokenUtils.getAccessToken());
+            request.setHttpMethod(HttpMethod.POST.name());
+            String appKey = DingTalkUtils.getDingtalkConfig().getLoginAppKey();
+            String appSecret = DingTalkUtils.getDingtalkConfig().getLoginAppSecret();
+            OapiSnsGetuserinfoBycodeResponse response = client.execute(request, appKey, appSecret);
             return new DingtalkResponse<>(response);
         } catch (Exception e) {
             logger.warn("获取用户详情时出错: " + e.getMessage(), e);
