@@ -1,6 +1,6 @@
 package com.duangframework.dingtalk.sdk.core;
 
-import com.aliyun.oss.ServiceException;
+
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.*;
@@ -9,6 +9,7 @@ import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
 import com.duangframework.dingtalk.sdk.dto.MessageBodyDto;
 import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.dingtalk.utils.DingTalkUtils;
+import com.duangframework.exception.ServiceException;
 import com.duangframework.mvc.http.enums.HttpMethod;
 import java.util.List;
 

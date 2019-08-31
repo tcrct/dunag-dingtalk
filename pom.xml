@@ -36,6 +36,12 @@
       <groupId>com.duangframework</groupId>
       <artifactId>duang</artifactId>
       <version>${duang.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.duangframework.ext</groupId>
+          <artifactId>duang-ext</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.dingtalk.api</groupId>

@@ -5,7 +5,6 @@ import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.OapiSnsGetuserinfoBycodeRequest;
 import com.dingtalk.api.response.OapiSnsGetuserinfoBycodeResponse;
 import com.duangframework.dingtalk.sdk.dto.DingtalkResponse;
-import com.duangframework.dingtalk.utils.DingTalkAccessTokenUtils;
 import com.duangframework.dingtalk.utils.DingTalkUtils;
 import io.netty.handler.codec.http.HttpMethod;
 import org.slf4j.Logger;
